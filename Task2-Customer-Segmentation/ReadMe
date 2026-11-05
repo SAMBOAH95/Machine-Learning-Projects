@@ -1,0 +1,144 @@
+# Customer Segmentation Using K-Means and DBSCAN
+
+## Project Overview
+
+This project applies unsupervised machine learning techniques to segment mall customers based on their annual income and spending scores.
+
+The project was completed as part of the **Elevvo Pathways Machine Learning Track – Task 2: Customer Segmentation**.
+
+The primary objective is to identify groups of customers with similar characteristics to help businesses understand customer behaviour and develop targeted marketing strategies.
+
+## Objectives
+
+- Explore and understand customer data.
+- Perform data preprocessing and feature scaling.
+- Apply K-Means clustering to segment customers.
+- Determine the optimal number of clusters using the Elbow Method and Silhouette Analysis.
+- Visualise customer segments.
+- Experiment with DBSCAN as an alternative clustering algorithm.
+- Compare the performance of both clustering approaches.
+
+## Dataset
+
+The project uses the Mall Customer Segmentation dataset from Kaggle.
+
+**Dataset source:** https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python
+
+The dataset contains 200 customer records and five attributes:
+
+- CustomerID
+- Genre
+- Age
+- Annual Income (k$)
+- Spending Score (1-100)
+
+For the primary clustering analysis, Annual Income and Spending Score were selected as the features.
+
+## Technologies and Libraries
+
+- Python
+- Google Colab
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+
+## Methodology
+
+### 1. Data Exploration and Preprocessing
+
+The dataset was loaded and examined to understand its structure, data types and statistical characteristics. Missing values and duplicate records were also checked.
+
+### 2. Feature Selection and Scaling
+
+Annual Income and Spending Score were selected for clustering.
+
+StandardScaler was applied to standardise the features before clustering.
+
+### 3. K-Means Clustering
+
+The Elbow Method and Silhouette Analysis were used to determine the optimal number of clusters.
+
+The analysis supported selecting five clusters (K = 5).
+
+### 4. Cluster Visualisation
+
+Scatter plots were created to visualise the five customer segments. Cluster centroids were also plotted to show the centre of each segment.
+
+### 5. DBSCAN Clustering
+
+DBSCAN was implemented as an alternative density-based clustering algorithm.
+
+The model was configured with:
+- eps = 0.3
+- min_samples = 5
+
+### 6. Algorithm Evaluation
+
+The Silhouette Score was used to evaluate cluster separation and compare the clustering approaches.
+
+## Results
+
+### K-Means Results
+
+- Number of clusters: 5
+- Silhouette Score: 0.5547
+- Total customers: 200
+
+The five customer segments revealed different income and spending patterns.
+
+| Cluster | Average Annual Income (k$) | Average Spending Score |
+|---|---:|---:|
+| 0 | 55.30 | 49.52 |
+| 1 | 86.54 | 82.13 |
+| 2 | 25.73 | 79.36 |
+| 3 | 88.20 | 17.11 |
+| 4 | 26.30 | 20.91 |
+
+### DBSCAN Results
+
+- Number of clusters: 7
+- Silhouette Score: 0.5243
+- Noise points: 35
+
+DBSCAN identified seven clusters and classified 35 customers as noise points.
+
+### Algorithm Comparison
+
+| Metric | K-Means | DBSCAN |
+|---|---:|---:|
+| Number of clusters | 5 | 7 |
+| Silhouette Score | 0.5547 | 0.5243 |
+| Noise points | 0 | 35 |
+
+**Note:** The K-Means silhouette score was calculated using all 200 customers, while the DBSCAN score was calculated using only the 165 non-noise customers. Therefore, the scores are not a perfectly like-for-like comparison.
+
+## Conclusion
+
+The project demonstrates how unsupervised machine learning can be used to identify meaningful customer segments.
+
+K-Means produced five interpretable customer groups and achieved a silhouette score of 0.5547. DBSCAN provided an alternative approach by identifying density-based groups and detecting observations that did not belong to sufficiently dense regions.
+
+Based on the results, K-Means is a reasonable choice for this particular segmentation task because it assigns all customers to five interpretable groups.
+
+The findings can help businesses understand customer behaviour and develop more targeted marketing strategies.
+
+## Project Files
+
+- `Customer_Segmentation_KMeans.ipynb` – Google Colab notebook containing the implementation and analysis.
+- `Mall_Customers.csv` – Original dataset.
+- `Customer_Segmentation_Results.csv` – Customer dataset containing the K-Means cluster assignments.
+- `README.md` – Project documentation.
+
+## Author
+
+**Samuel Boah**
+
+Machine Learning Enthusiast | MPhil Information Technology Candidate | AI and Digital Transformation Researcher
+
+GitHub: https://github.com/SAMBOAH95
+
+---
+
+*Part of the Elevvo Pathways Machine Learning Track.*
