@@ -1,0 +1,161 @@
+# Forest Cover Type Classification
+
+## Project Overview
+
+This project focuses on developing and evaluating machine learning classification models to predict forest cover types using cartographic and environmental features.
+
+The project uses the UCI Covertype dataset, which contains geographical and environmental measurements collected from forest areas. Seven forest cover types are represented in the target variable.
+
+The primary objective is to compare different classification algorithms and identify models that provide reliable predictions across all seven classes.
+
+## Objectives
+
+- Explore and understand the Forest Cover Type dataset.
+- Prepare the dataset for multiclass classification.
+- Develop Decision Tree, Random Forest and XGBoost models.
+- Address class imbalance and investigate its effect on classification performance.
+- Evaluate models using Accuracy, Balanced Accuracy, Precision, Recall and Macro F1-score.
+- Apply hyperparameter tuning to improve model performance.
+- Compare the models and identify the strongest-performing configurations.
+
+## Dataset Description
+
+**Dataset:** UCI Covertype Dataset
+
+**Source:** [UCI Machine Learning Repository – Covertype](https://archive.ics.uci.edu/dataset/31/covertype)
+
+The dataset contains:
+
+- 581,012 observations.
+- 54 input features.
+- 1 target variable (`Cover_Type`).
+- 7 forest cover classes.
+
+The input features include elevation, aspect, slope, distances to hydrology, roadways and fire points, hillshade measurements, wilderness area indicators and soil type indicators.
+
+The wilderness area and soil type features were already one-hot encoded in the dataset.
+
+## Technologies and Libraries
+
+- Python
+- Google Colab
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- XGBoost
+
+## Methodology
+
+### 1. Data Exploration and Preparation
+
+The dataset was examined to understand its structure, feature types, class distribution and data quality.
+
+The investigation identified no missing values or duplicate records. The target variable showed class imbalance, with some forest cover types having substantially fewer observations than others.
+
+### 2. Data Splitting
+
+The dataset was divided into:
+
+- Training set: 80%
+- Testing set: 20%
+
+Stratified sampling was applied to preserve the class distribution across the training and testing sets.
+
+### 3. Model Development
+
+Six model configurations were evaluated:
+
+1. Decision Tree
+2. Random Forest
+3. Original XGBoost
+4. Class-balanced XGBoost
+5. Tuned Random Forest
+6. Tuned XGBoost
+
+Class weighting and sample weighting were explored to address class imbalance.
+
+### 4. Hyperparameter Tuning
+
+RandomizedSearchCV was used to investigate different hyperparameter combinations for Random Forest and XGBoost.
+
+The search used:
+- 20% of the training data as the tuning sample.
+- 8 randomly selected parameter combinations per algorithm.
+- 3-fold cross-validation.
+- Macro F1-score as the tuning objective.
+
+The selected configurations were subsequently retrained on the full training dataset and evaluated using the independent test dataset.
+
+## Experimental Results
+
+The following results were obtained on the test dataset.
+
+| Model | Accuracy | Balanced Accuracy | Macro F1-score |
+|---|---:|---:|---:|
+| Decision Tree | 93.62% | 88.52% | 89.17% |
+| Random Forest | 95.45% | 90.47% | 92.29% |
+| Original XGBoost | 85.53% | 79.44% | 82.34% |
+| Balanced XGBoost | 85.95% | 92.16% | 82.73% |
+| Tuned Random Forest | 95.08% | 92.86% | 92.27% |
+| Tuned XGBoost | 94.73% | 92.17% | 93.17% |
+
+### Key Findings
+
+- The original Random Forest achieved the highest overall accuracy of 95.45%.
+- Tuned Random Forest achieved the highest Balanced Accuracy of 92.86%.
+- Tuned XGBoost achieved the highest Macro F1-score of 93.17%.
+- Class-balanced XGBoost improved minority-class recognition, although its overall accuracy remained lower.
+- Hyperparameter tuning improved the Macro F1-score of XGBoost from 82.34% to 93.17%.
+
+These findings demonstrate the importance of evaluating multiclass models using multiple metrics, particularly when the dataset is imbalanced.
+
+## Feature Importance
+
+Feature importance analysis was performed using the Random Forest model.
+
+Elevation was identified as the most influential feature, followed by horizontal distance to roadways, horizontal distance to fire points and horizontal distance to hydrology.
+
+These results describe the model's reliance on the input features and should not be interpreted as proof of causal relationships.
+
+## Conclusion
+
+The experiments demonstrate that tree-based ensemble methods can achieve strong performance in forest cover type classification.
+
+Although the original Random Forest achieved the highest accuracy, tuned Random Forest provided the highest balanced accuracy, while tuned XGBoost achieved the highest Macro F1-score.
+
+Tuned XGBoost is therefore a strong candidate when balanced precision and recall across all seven classes are important. Tuned Random Forest is also a strong candidate when overall class recall is the priority.
+
+The project highlights the value of class imbalance handling, hyperparameter tuning and comprehensive model evaluation in multiclass classification problems.
+
+## Limitations
+
+- The experiment used one train/test split, so performance may vary with different random splits.
+- Hyperparameter tuning explored a limited number of randomly selected configurations.
+- The dataset represents specific forest conditions and may not generalise perfectly to other geographical regions.
+- Feature importance is model-dependent and does not establish causation.
+- The study evaluated predictive performance rather than deployment in a live forest monitoring system.
+
+## Future Improvements
+
+- Perform repeated stratified cross-validation.
+- Explore additional ensemble and boosting algorithms.
+- Investigate more extensive hyperparameter optimisation.
+- Evaluate model performance on data from different geographical regions.
+- Explore deployment through a simple web-based prediction application.
+
+## Project Files
+
+- `Forest_Cover_Type_Classification.ipynb` – Main Google Colab notebook containing the implementation.
+- `Forest_Cover_Final_Model_Comparison.csv` – Final comparison of the six models.
+- `Forest_Cover_Model_Comparison.png` – Visual comparison of model performance.
+- `Forest_Cover_Type_Dataset.csv` – Dataset used for the experiment (maintained separately in Google Drive if it exceeds GitHub's file-size limit).
+
+## Author
+
+**Samuel Boah**
+
+GitHub: [SAMBOAH95](https://github.com/SAMBOAH95)
+
+Machine Learning | Information Technology | AI and Digital Transformation
