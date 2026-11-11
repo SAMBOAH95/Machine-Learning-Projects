@@ -1,0 +1,159 @@
+Loan Approval Prediction
+Elevvo Pathways - Machine Learning Track
+Level 2 | Task 4
+1. Project Overview
+This project applies machine learning classification techniques to predict whether a loan application will be approved or rejected.
+
+The objectives are to:
+
+Explore and understand the loan dataset.
+Clean and preprocess the data.
+Develop classification models.
+Investigate class imbalance handling.
+Compare model performance using appropriate evaluation metrics.
+2. Dataset Description
+Dataset: Loan Approval Prediction Dataset
+
+Source: Kaggle Loan Prediction Dataset, accessed through a public GitHub CSV copy.
+
+Total records: 614
+Original columns: 13
+Predictive features: 11
+Target variable: Loan_Status
+Target classes:
+
+Y: Loan Approved
+N: Loan Rejected
+Loan_ID was excluded from model training because it is an identifier.
+
+3. Exploratory Data Analysis
+EDA activities included:
+
+Dataset inspection.
+Missing-value analysis.
+Descriptive statistics.
+Numerical feature distributions.
+Categorical feature distributions.
+Outlier inspection.
+Analysis of relationships between features and loan approval.
+Target distribution:
+
+Approved: 422 (68.73%)
+Rejected: 192 (31.27%)
+The dataset exhibits moderate class imbalance.
+
+4. Data Preprocessing
+The following techniques were applied:
+
+Removed Loan_ID.
+Separated features and target variable.
+Used an 80:20 stratified train-test split.
+Imputed numerical missing values using the median.
+Imputed categorical missing values using the most frequent value.
+Applied StandardScaler to numerical features.
+Applied One-Hot Encoding to categorical features.
+Training records: 491 Testing records: 123
+
+Preprocessing transformations were fitted on training data to prevent data leakage.
+
+5. Machine Learning Models
+Six model configurations were evaluated:
+
+Logistic Regression
+Balanced Logistic Regression
+Decision Tree
+Random Forest
+Corrected SMOTENC Logistic Regression
+Corrected SMOTENC Decision Tree
+6. Handling Class Imbalance
+Two approaches were investigated.
+
+Class Weighting
+The class_weight='balanced' option was used to give additional importance to the minority class.
+
+SMOTENC
+SMOTENC was used to generate synthetic minority-class observations while considering both categorical and numerical features.
+
+Training distribution before resampling:
+
+Approved: 337
+Rejected: 154
+Training distribution after resampling:
+
+Approved: 337
+Rejected: 337
+The test set remained unchanged.
+
+After SMOTENC, One-Hot Encoding was applied to categorical features before training the corrected classifiers.
+
+7. Model Evaluation
+Evaluation metrics included:
+
+Accuracy
+Macro Precision
+Macro Recall
+Macro F1-score
+Rejected-class Recall
+Classification Reports
+Confusion Matrices
+Final Model Comparison
+Model	Accuracy	Macro Precision	Macro Recall	Macro F1
+Logistic Regression	0.8618	0.8983	0.7836	0.8147
+Balanced Logistic Regression	0.8293	0.8009	0.7964	0.7986
+Random Forest	0.8293	0.8168	0.7673	0.7846
+Decision Tree	0.7886	0.7535	0.7670	0.7592
+SMOTENC Decision Tree	0.7642	0.7273	0.7421	0.7331
+SMOTENC Logistic Regression	0.7561	0.7220	0.7435	0.7288
+8. Key Findings
+Logistic Regression achieved the highest accuracy of 86.18%.
+Logistic Regression achieved the highest Macro F1-score of 0.8147.
+Balanced Logistic Regression achieved the highest Macro Recall of 0.7964.
+Balanced Logistic Regression and corrected SMOTENC Logistic Regression achieved the highest rejected-class recall of 0.7105.
+SMOTENC did not improve overall performance compared with the original Logistic Regression.
+Class weighting improved minority-class detection compared with the original Logistic Regression.
+9. Best Performing Model
+Logistic Regression was selected as the best overall model based on its Macro F1-score.
+
+Performance:
+
+Accuracy: 86.18%
+Macro Precision: 89.83%
+Macro Recall: 78.36%
+Macro F1-score: 81.47%
+Balanced Logistic Regression is a useful alternative when detecting rejected applications is a higher priority.
+
+10. Project Limitations
+The dataset contains only 614 observations.
+The dataset may not represent all financial institutions or geographical regions.
+Imbalance-handling techniques did not consistently improve performance.
+Evaluation used one stratified train-test split.
+Further validation and hyperparameter tuning are recommended.
+11. Future Improvements
+Apply cross-validation.
+Perform additional hyperparameter optimisation.
+Investigate classification threshold optimisation.
+Explore additional classification algorithms.
+Test on larger and more diverse datasets.
+Investigate model explainability using SHAP.
+Develop a loan prediction application.
+12. Tools and Technologies
+Python
+Google Colab
+Pandas
+NumPy
+Matplotlib
+Seaborn
+Scikit-learn
+Imbalanced-learn
+GitHub
+13. Conclusion
+This project demonstrated the application of machine learning classification techniques to loan approval prediction.
+
+Logistic Regression provided the strongest overall predictive performance, while class weighting improved the identification of rejected applications.
+
+The experiments also demonstrated that addressing class imbalance requires careful evaluation because oversampling does not automatically guarantee improved model performance.
+
+Project: Loan Approval Prediction
+Programme: Elevvo Pathways - Machine Learning Track
+Level: 2
+Task: 4
