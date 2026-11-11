@@ -1,0 +1,7 @@
+Model,Accuracy,Macro Precision,Macro Recall,Macro F1,Rejected Recall
+Logistic Regression,0.8618,0.8983,0.7836,0.8147,0.5789
+Balanced Logistic Regression,0.8293,0.8009,0.7964,0.7986,0.7105
+Random Forest,0.8293,0.8168,0.7673,0.7846,0.6053
+Decision Tree,0.7886,0.7535,0.767,0.7592,0.7105
+SMOTENC Decision Tree (Corrected),0.7642,0.7273,0.7421,0.7331,0.6842
+SMOTENC Logistic Regression (Corrected),0.7561,0.722,0.7435,0.7288,0.7105

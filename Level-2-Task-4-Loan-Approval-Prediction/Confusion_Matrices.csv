@@ -1,0 +1,7 @@
+Model,True Rejected,False Approved,False Rejected,True Approved
+Logistic Regression,22,16,1,84
+Balanced Logistic Regression,27,11,10,75
+Decision Tree,27,11,15,70
+Random Forest,23,15,6,79
+SMOTENC Logistic Regression (Corrected),27,11,19,66
+SMOTENC Decision Tree (Corrected),26,12,17,68
