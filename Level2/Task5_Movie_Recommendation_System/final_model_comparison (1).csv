@@ -1,0 +1,5 @@
+Model,Precision@10,Precision_Percentage
+User-Based Collaborative Filtering,0.3561,35.61
+SVD Matrix Factorization,0.33,33.0
+Improved Item-Based Collaborative Filtering,0.0844,8.44
+Original Item-Based Collaborative Filtering,0.0243,2.4299999999999997
