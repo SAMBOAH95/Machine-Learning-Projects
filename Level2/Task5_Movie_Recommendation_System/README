@@ -1,0 +1,177 @@
+# Movie Recommendation System
+
+## Elevvo Pathways – Machine Learning Track
+**Level 2 | Task 5: Movie Recommendation System**
+
+## 1. Project Overview
+
+This project develops and evaluates a movie recommendation system using collaborative filtering and matrix factorization techniques.
+
+The system analyses user–movie rating patterns to recommend movies that users may enjoy. Four recommendation approaches were implemented and evaluated using the MovieLens 100K dataset.
+
+The main objective is to explore different recommendation techniques and compare their performance using Precision@K.
+
+## 2. Objectives
+
+- Build a user-item rating matrix.
+- Implement user-based collaborative filtering.
+- Calculate similarity between users using cosine similarity.
+- Implement item-based collaborative filtering.
+- Apply Singular Value Decomposition (SVD) for matrix factorization.
+- Generate personalised movie recommendations.
+- Evaluate recommendation performance using Precision@K.
+- Compare the performance of the implemented models.
+
+## 3. Dataset
+
+**Dataset:** MovieLens 100K
+
+**Source:** GroupLens Research
+
+[Download MovieLens 100K Dataset](https://files.grouplens.org/datasets/movielens/ml-100k.zip)
+
+The dataset contains:
+- 100,000 movie ratings.
+- 943 users.
+- 1,682 movies.
+- Ratings ranging from 1 to 5.
+
+For model development and evaluation, the official MovieLens split was used:
+
+| Dataset | Number of ratings | Percentage |
+|---|---:|---:|
+| Training (`u1.base`) | 80,000 | 80% |
+| Testing (`u1.test`) | 20,000 | 20% |
+
+## 4. Technologies and Libraries
+
+- Python
+- Google Colab
+- Pandas
+- NumPy
+- Matplotlib
+- Scikit-learn
+- Cosine Similarity
+- Singular Value Decomposition (SVD)
+
+## 5. Methodology
+
+### 5.1 Data Exploration and Preprocessing
+
+The dataset was loaded and explored to understand its structure, rating distribution, user activity and movie popularity.
+
+A user-item matrix was constructed, with users represented as rows and movies as columns. Missing ratings were filled with zero for the baseline recommendation implementations.
+
+### 5.2 User-Based Collaborative Filtering
+
+Cosine similarity was used to identify users with similar movie-rating patterns.
+
+The 20 most similar users were selected as neighbours. Movies highly rated by these neighbours but not previously rated by the target user were considered for recommendation.
+
+### 5.3 Item-Based Collaborative Filtering
+
+Cosine similarity was calculated between movies using their user-rating patterns.
+
+Two implementations were explored:
+
+- Original item-based approach using similarity-weighted predictions.
+- Improved item-based approach using the 20 most similar rated movies when estimating candidate movie ratings.
+
+A minimum popularity threshold of 20 training ratings was also applied to reduce the influence of sparsely rated movies.
+
+### 5.4 Matrix Factorization Using SVD
+
+Truncated Singular Value Decomposition was implemented using Scikit-learn.
+
+The model used 50 latent factors to represent underlying user preferences and movie characteristics.
+
+The learned user and movie factor representations were combined to reconstruct predicted ratings.
+
+## 6. Evaluation Method
+
+The models were evaluated using Precision@K.
+
+A movie was considered relevant when its actual rating in the test dataset was 4 or 5.
+
+The evaluation compared recommended movies against relevant movies in the held-out test dataset.
+
+**Precision@K formula:**
+
+Precision@K = Relevant recommended movies in top K / K
+
+For the main model comparison, Precision@10 was used.
+
+The evaluation covered 456 users who met the eligibility conditions, including having relevant test ratings and sufficient candidate recommendations.
+
+## 7. Experimental Results
+
+### Final Model Comparison
+
+| Recommendation Model | Precision@10 |
+|---|---:|
+| User-Based Collaborative Filtering | **35.61%** |
+| SVD Matrix Factorization | **33.00%** |
+| Improved Item-Based Collaborative Filtering | **8.44%** |
+| Original Item-Based Collaborative Filtering | **2.43%** |
+
+### Additional User-Based Evaluation
+
+| Evaluation Metric | Precision |
+|---|---:|
+| Precision@5 | 40.96% |
+| Precision@10 | 35.61% |
+| Precision@20 | 29.08% |
+
+### Key Findings
+
+1. User-based collaborative filtering achieved the highest Precision@10 of 35.61%.
+2. SVD achieved 33.00%, demonstrating competitive recommendation performance.
+3. The improved item-based implementation increased Precision@10 from 2.43% to 8.44%.
+4. User-based Precision decreased as the recommendation list increased from 5 to 20 movies.
+5. The results demonstrate that recommendation performance depends on the selected algorithm and implementation.
+
+## 8. Project Structure
+
+```text
+Task5_Movie_Recommendation_System/
+│
+├── Movie_Recommendation_System_Task5.ipynb
+│
+├── dataset/
+│
+├── results/
+│
+├── graphs/
+│
+└── README.md
+```
+
+The notebook contains the implementation, data exploration, recommendation experiments, evaluation and visualisations.
+
+## 9. Limitations
+
+- Missing ratings were represented as zero in the baseline user-item matrix, which can influence similarity calculations.
+- The evaluation covered 456 eligible users rather than all 943 users.
+- The recommendation approaches used different prediction strategies and should be interpreted in the context of their implementations.
+- SVD predictions were not constrained to the original 1–5 rating scale.
+- The results are specific to the MovieLens dataset and the experimental configuration.
+
+## 10. Conclusion
+
+This project implemented and evaluated user-based collaborative filtering, item-based collaborative filtering and SVD matrix factorization for movie recommendation.
+
+User-based collaborative filtering achieved the best Precision@10 of 35.61%, followed by SVD at 33.00%.
+
+The experiment provided practical experience in recommendation systems, similarity computation, matrix factorization, personalised recommendations and model evaluation.
+
+## 11. Author
+
+**Samuel Boah**
+
+Machine Learning Track – Elevvo Pathways
+
+GitHub: [SAMBOAH95](https://github.com/SAMBOAH95)
+
+---
+
+*This project was developed as part of the Elevvo Pathways Machine Learning Track.*
