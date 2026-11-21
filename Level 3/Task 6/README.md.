@@ -1,0 +1,233 @@
+# Music Genre Classification Using Machine Learning and Deep Learning
+
+## 1. Project Overview
+
+This project explores applying machine learning and Deep Learning techniques to automatically classify music genres using the GTZAN Music Genre Dataset.
+
+Three classification models were developed and evaluated:
+
+- Random Forest
+- Support Vector Machine (SVM)
+- Convolutional Neural Network (CNN)
+
+The objective was to investigate how effectively these models classify music into ten different genres using numerical audio features and spectrogram images.
+
+## 2. Project Objectives
+
+1. Explore and preprocess the GTZAN music genre dataset.
+2. Analyse relationships among extracted audio features.
+3. Develop Random Forest, SVM and CNN classification models.
+4. Evaluate and compare the performance of the three models.
+5. Identify influential audio features and examine classification errors.
+
+## 3. Dataset Description
+
+The project uses the GTZAN Music Genre Dataset.
+
+The numerical feature dataset contains 9,990 three-second audio segments and 57 numerical audio features.
+
+The ten music genres are:
+
+- Blues
+- Classical
+- Country
+- Disco
+- Hip-hop
+- Jazz
+- Metal
+- Pop
+- Reggae
+- Rock
+
+The dataset also contains spectrogram images used for CNN development.
+
+### Dataset files
+
+- `features_3_sec.csv`
+- `features_30_sec.csv`
+- `genres_original/`
+- `images_original/`
+
+## 4. Data Preprocessing and Exploratory Data Analysis
+
+The following activities were performed:
+
+- Dataset loading and inspection.
+- Missing-value and duplicate checks.
+- Genre distribution analysis.
+- Audio feature correlation analysis.
+- Spectrogram image inspection.
+- Mapping audio segments and spectrograms to their original song identifiers.
+
+### Preventing Data Leakage
+
+A song-level train-test split was implemented to prevent segments belonging to the same original song from appearing in both training and testing datasets.
+
+The numerical feature dataset was divided into:
+
+- Training: 800 original songs (7,990 audio segments).
+- Testing: 200 original songs (2,000 audio segments).
+
+For the CNN, 799 training spectrogram images and 200 testing images were available. One training song did not have a corresponding spectrogram image.
+
+The CNN training images were further divided into training and validation subsets.
+
+## 5. Model Development
+
+### 5.1 Random Forest
+
+A Random Forest classifier was trained using the extracted numerical audio features.
+
+Configuration:
+
+- Number of estimators: 200
+- Random state: 42
+- Parallel processing: Enabled
+
+Segment-level predictions were aggregated using majority voting to obtain song-level predictions.
+
+### 5.2 Support Vector Machine (SVM)
+
+An SVM classifier using a Radial Basis Function (RBF) kernel was developed.
+
+Configuration:
+
+- Kernel: RBF
+- C: 10
+- Gamma: Scale
+- Feature scaling: StandardScaler
+
+Song-level predictions were obtained through majority voting across audio segments belonging to each original song.
+
+### 5.3 Convolutional Neural Network (CNN)
+
+A CNN was developed to classify spectrogram images.
+
+The architecture included:
+
+- Convolutional layers.
+- Max-pooling layers.
+- Flattening layer.
+- Dense layer with 128 neurons.
+- Dropout regularisation.
+- Softmax output layer with ten classes.
+
+The spectrogram images were resized to 128 × 128 pixels and normalised.
+
+The model was trained for 20 epochs using a stratified training-validation split and evaluated on 200 unseen test songs.
+
+## 6. Experimental Results
+
+All three models were evaluated using song-level classification accuracy.
+
+| Model | Correct Predictions | Accuracy |
+|---|---:|---:|
+| SVM | 163/200 | **81.50%** |
+| Random Forest | 157/200 | 78.50% |
+| CNN | 100/200 | 50.00% |
+
+### Key Findings
+
+- SVM achieved the highest classification accuracy of 81.50%.
+- Random Forest achieved 78.50%, performing closely behind SVM.
+- CNN achieved 50.00% test accuracy.
+- Classical and metal were among the genres classified particularly well by the traditional models.
+- CNN learning curves revealed a considerable gap between training and validation performance, indicating overfitting.
+
+Under the experimental conditions used, SVM was the best-performing model.
+
+## 7. Project Visualisations
+
+The following visualisations provide insights into the dataset, model behaviour and experimental findings.
+
+### 7.1 Genre Distribution
+
+![Genre Distribution](Visualizations/4.png)
+
+Shows the distribution of audio segments across the ten music genres.
+
+### 7.2 Audio Feature Correlation Heatmap
+
+![Feature Correlation](Visualizations/heatmap.png)
+
+Illustrates the relationships among the extracted numerical audio features.
+
+### 7.3 Sample Spectrograms
+
+![Sample Spectrograms](Visualizations/spectrograms.png)
+
+Displays representative spectrograms across the ten music genres.
+
+### 7.4 Confusion Matrices
+
+![Confusion Matrices](Visualizations/confusion%20matrix.png)
+
+Compares classification errors across Random Forest, SVM, and CNN.
+
+### 7.5 CNN Learning Curves
+
+![CNN Learning Curves](Visualizations/cnn%20curves.png)
+
+Shows training and validation accuracy and loss across 20 epochs.
+
+### 7.6 Random Forest Feature Importance
+
+![Feature Importance](Visualizations/random.png)
+
+Identifies the 15 most influential audio features according to the Random Forest model.
+
+### 7.7 Overall Model Performance Comparison
+
+![Model Comparison](Visualizations/comparison.png)
+
+Compares the song-level classification accuracy of all three models.
+
+## 8. Technologies and Libraries
+
+The project was implemented using Python and Google Colab.
+
+Key technologies and libraries include:
+
+- Python
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- TensorFlow / Keras
+- PIL (Pillow)
+
+## 9. Project Limitations
+
+1. The CNN achieved lower test accuracy than the traditional machine learning models.
+2. The CNN learning curves indicated overfitting.
+3. The CNN used spectrogram images, whereas Random Forest and SVM used extracted numerical audio features.
+4. Random Forest and SVM aggregated predictions from multiple audio segments per song, while the CNN classified one spectrogram image per song. Therefore, the comparison is at song level but uses different input representations and prediction aggregation strategies.
+5. The experiment used the GTZAN dataset, so the results may not generalise to every music collection or recording environment.
+
+## 10. Future Improvements
+
+Future work could explore:
+
+- CNN architecture optimisation.
+- Improved regularisation and data augmentation.
+- Transfer learning using pretrained image models.
+- Audio-based deep learning approaches.
+- Hyperparameter optimisation.
+- Evaluation using additional music datasets.
+
+## 11. Conclusion
+
+This project investigated three machine learning and deep learning approaches for music genre classification.
+
+The experimental results showed that SVM achieved the highest song-level classification accuracy (81.50%), followed by Random Forest (78.50%). The CNN achieved 50.00%.
+
+The findings suggest that traditional machine learning approaches outperformed the implemented CNN under the experimental conditions. The project also highlights the importance of song-level data separation in preventing data leakage during model evaluation.
+
+## 12. Author
+
+**Samuel Boah**
+
+Machine Learning Track – Elevvo Pathways
+
+Project: Music Genre Classification
