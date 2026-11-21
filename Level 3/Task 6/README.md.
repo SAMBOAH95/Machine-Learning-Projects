@@ -41,12 +41,21 @@ The ten music genres are:
 
 The dataset also contains spectrogram images used for CNN development.
 
-### Dataset files
+### Dataset Files
 
-- `features_3_sec.csv`
-- `features_30_sec.csv`
-- `genres_original/`
-- `images_original/`
+The project uses the following files from the GTZAN Music Genre Dataset:
+
+**Extracted audio features included in this repository:**
+- `features_3_sec.csv` – Extracted features from 3-second audio segments.
+- `features_30_sec.csv` – Extracted features from 30-second audio segments.
+
+**Additional dataset resources:**
+- `genres_original/` – Original audio recordings organised by music genre.
+- `images_original/` – Spectrogram images representing the audio recordings.
+
+The original audio recordings and spectrogram images are available through the [GTZAN Music Genre Dataset](https://www.kaggle.com/datasets/carlthome/gtzan-genre-collection).
+
+The two CSV files are provided in the repository's `Dataset/` directory. The original audio and image resources can be downloaded separately when required.
 
 ## 4. Data Preprocessing and Exploratory Data Analysis
 
